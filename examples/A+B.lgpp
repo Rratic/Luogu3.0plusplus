@@ -1,0 +1,7 @@
+6 1
+MOV B A 2
+MOV C A 3
+ADD A B C 4
+POP B 5
+POP C 6
+TER
