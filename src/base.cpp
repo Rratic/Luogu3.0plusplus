@@ -1,5 +1,5 @@
 #include "base.h"
-uint16_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000;
+uint16_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000;
 uint32_t do_mod_p=(1<<23)+1;
 vector<string> split(string s,char sign){
     vector<string>ans;
@@ -58,6 +58,15 @@ false=数字
 {"PUS",3,{0,1,1}},
 {"POP",2,{0,1}},
 {"MOV",3,{0,0,1}},
+{"CPY",3,{1,1,0}},
+{"ADD",4,{1,1,1,0}},
+{"SUB",4,{1,1,1,0}},
+{"MUL",4,{1,1,1,0}},
+{"DIV",4,{1,1,1,0}},
+{"MOD",4,{1,1,1,0}},
+{"EMP",3,{1,0,0}},
+{"CMP",4,{1,1,0,0}},
+{"TER",0},
 //{"",,{,,,}},
 };
 uint16_t order::search_basic(string ordername){

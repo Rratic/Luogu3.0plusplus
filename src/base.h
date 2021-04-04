@@ -18,7 +18,7 @@ enum LgErrorType{
     FILE_ERROR,
     FORMAT_ERROR,
 };
-extern uint16_t MAX_STATE,MAX_STACK,TIME_LIMIT;
+extern uint16_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST;
 extern uint32_t do_mod_p;
 vector<string> split(string s,char sign);
 uint16_t selected_stack(string s);

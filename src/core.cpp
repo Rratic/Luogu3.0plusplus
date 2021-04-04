@@ -15,3 +15,6 @@ bool initall(queue<string>s){
     }
     return true;
 }
+bool excute(){
+    uint32_t c=0;
+}
