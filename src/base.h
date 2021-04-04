@@ -12,10 +12,15 @@ enum LgErrorType{
     TOO_MANY_STATES,
     DIVIDE_BY_ZERO,
     TIME_LIMIT_EXCEEDED,
+    //
+    FILE_ERROR,
+    FORMAT_ERROR,
 };
 extern uint16_t MAX_STATE,MAX_STACK,TIME_LIMIT;
 extern uint32_t do_mod_p;
 vector<string> split(string s,char sign);
+uint16_t selected_stack(string s);
+uint32_t s_to_i32(string s);
 class luogu_stack{
     private:
     stack<uint32_t>data;

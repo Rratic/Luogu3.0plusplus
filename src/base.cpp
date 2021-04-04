@@ -17,6 +17,22 @@ vector<string> split(string s,char sign){
     if(temp!="")ans.push_back(temp);
     return ans;
 }
+uint16_t selected_stack(string s){
+    if(s=="A")return 0;
+    else if(s=="B")return 1;
+    else if(s=="C")return 2;
+    throw FORMAT_ERROR;
+    return 0;
+}
+uint32_t s_to_i32(string s){
+    uint32_t ans=0;
+    for(auto i:s){
+        if(i<'0'||i>'9')throw FORMAT_ERROR;
+        ans*=10;
+        ans+=(i-'0');
+    }
+    return ans;
+}
 luogu_stack::luogu_stack(){size=0;}
 void luogu_stack::pop(){
     if(size==0)throw STACK_UNDERFLOW;
