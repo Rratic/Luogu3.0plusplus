@@ -17,6 +17,7 @@ enum LgErrorType{
     UNKNOWN_ORDER,
     FILE_ERROR,
     FORMAT_ERROR,
+    UPLOAD,//上传
 };
 extern uint16_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST;
 extern uint32_t do_mod_p;

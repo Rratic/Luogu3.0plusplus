@@ -31,7 +31,13 @@ bool initstackfromfile(string filename){
 }
 bool lgwork(string filename){
     public_message=filename;
-    excute();
+    try{
+        excute();
+    }
+    catch(LgErrorType i){
+        if(i==UPLOAD)cout<<public_message;
+        return false;
+    }
     savefile:{
         ofstream fout;
         fout.open(filename,std::ios::out);
@@ -45,4 +51,5 @@ bool lgwork(string filename){
             fout<<'\n';
         }
     }
+    return true;
 }
