@@ -16,7 +16,7 @@ bool initstackfromfile(string filename){
     vector<string>s;
     ifstream fin;
     fin.open(filename,std::ios::in);
-    if(!fin.is_open())throw FILE_ERROR;
+    if(!fin.is_open())return false;//无文件：无初始化
     string t;
     while(getline(fin,t)){
         s=split(t,' ');
