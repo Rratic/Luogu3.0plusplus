@@ -1,16 +1,18 @@
 #include "work.h"
-vector<string> getfromfile(string filename){
-    vector<string>s;
+queue<string> getfromfile(string filename){
+    public_message=filename;
+    queue<string>s;
     ifstream fin;
     fin.open(filename,std::ios::in);
     if(!fin.is_open())throw FILE_ERROR;
     string t;
     while(getline(fin,t)){
-        s.push_back(t);
+        s.push(t);
     }
     return s;
 }
 bool initstackfromfile(string filename){
+    public_message=filename;
     vector<string>s;
     ifstream fin;
     fin.open(filename,std::ios::in);
@@ -26,4 +28,21 @@ bool initstackfromfile(string filename){
         }
     }
     return true;
+}
+bool lgwork(string filename){
+    public_message=filename;
+    excute();
+    savefile:{
+        ofstream fout;
+        fout.open(filename,std::ios::out);
+        if(!fout.is_open())throw FILE_ERROR;
+        for(size_t i=0;i<3;++i){
+            fout<<('A'+i);
+            while(!Three[i].empty()){
+                fout<<" "<<Three[i].top();
+                Three[i].pop();
+            }
+            fout<<'\n';
+        }
+    }
 }

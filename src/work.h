@@ -5,6 +5,6 @@ using std::ifstream;
 using std::ofstream;
 using std::cout;
 using std::getline;
-vector<string> getfromfile(string filename);
+queue<string> getfromfile(string filename);
 bool initstackfromfile(string filename);
-bool lgwork();
+bool lgwork(string filename);

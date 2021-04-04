@@ -46,3 +46,6 @@ void luogu_stack::push(uint32_t x){
     if(size==MAX_STACK)throw STACK_OVERFLOW;
     data.push(x);
 }
+bool luogu_stack::empty(){
+    return size==0;
+}

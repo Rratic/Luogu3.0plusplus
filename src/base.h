@@ -30,6 +30,7 @@ class luogu_stack{
     void pop();
     uint32_t top();
     void push(uint32_t x);
+    bool empty();
 };
 class order{
     public:
