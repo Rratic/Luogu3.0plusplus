@@ -1,5 +1,5 @@
 #include "base.h"
-uint16_t MAX_STATE=100000,MAX_STACK=1000000;
+uint16_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000;
 uint32_t do_mod_p=(1<<23)+1;
 vector<string> split(string s,char sign){
     vector<string>ans;
@@ -16,4 +16,17 @@ vector<string> split(string s,char sign){
     }
     if(temp!="")ans.push_back(temp);
     return ans;
+}
+luogu_stack::luogu_stack(){size=0;}
+void luogu_stack::pop(){
+    if(size==0)throw STACK_UNDERFLOW;
+    data.pop();
+}
+uint32_t luogu_stack::top(){
+    if(size==0)throw ILLEGAL_ACCESS;
+    return data.top();
+}
+void luogu_stack::push(uint32_t x){
+    if(size==MAX_STACK)throw STACK_OVERFLOW;
+    data.push(x);
 }
