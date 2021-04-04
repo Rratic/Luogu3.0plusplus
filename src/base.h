@@ -12,7 +12,9 @@ enum LgErrorType{
     TOO_MANY_STATES,
     DIVIDE_BY_ZERO,
     TIME_LIMIT_EXCEEDED,
+    UNDEFINED_BEHAVIOR,
     //
+    UNKNOWN_ORDER,
     FILE_ERROR,
     FORMAT_ERROR,
 };
@@ -32,9 +34,18 @@ class luogu_stack{
     void push(uint32_t x);
     bool empty();
 };
+class order_pattern{
+    public:
+    string name;
+    uint8_t typen;
+    bool type[4];
+};
 class order{
     public:
-    uint8_t name;
+    static order_pattern basic[];
+    static uint16_t order_pattern_num;
+    uint16_t name;
     uint32_t args[4];
+    uint16_t search_basic(string ordername);
     bool load(string s);
 };

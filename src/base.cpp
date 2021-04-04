@@ -49,3 +49,29 @@ void luogu_stack::push(uint32_t x){
 bool luogu_stack::empty(){
     return size==0;
 }
+uint16_t order::order_pattern_num=34;
+order_pattern order::basic[]={
+/*
+true=字母
+false=数字
+*/
+{"PUS",3,{0,1,1}},
+{"POP",2,{0,1}},
+{"MOV",3,{0,0,1}},
+//{"",,{,,,}},
+};
+uint16_t order::search_basic(string ordername){
+    for(uint16_t i=0;i<order_pattern_num;i++){
+        if(basic[i].name==ordername)return i;
+    }
+    return 65536;
+}
+bool order::load(string s){
+    vector<string>t=split(s,' ');
+    name=search_basic(t[0]);
+    if(name==65536)throw UNKNOWN_ORDER;
+    for(uint8_t i=1;i<=basic[name].typen;i++){
+        if(basic[name].type)args[i-1]=selected_stack(t[i]);
+        else args[i-1]=s_to_i32(t[i]);
+    }
+}
