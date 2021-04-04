@@ -11,6 +11,7 @@ int main(int argc,char *argv[]){
         catch(LgErrorType i){
             if(i==FILE_ERROR)cout<<"Failed to open file:"<<public_message;
             if(i==FORMAT_ERROR)cout<<"Incorrect format.";
+            if(i==TOO_MANY_STATES)cout<<"Too many states!";
             exit(0);
         }
     }

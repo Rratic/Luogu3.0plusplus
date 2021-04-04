@@ -73,12 +73,12 @@ uint16_t order::search_basic(string ordername){
     for(uint16_t i=0;i<order_pattern_num;i++){
         if(basic[i].name==ordername)return i;
     }
-    return 65536;
+    return 65535;
 }
 bool order::load(string s){
     vector<string>t=split(s,' ');
     name=search_basic(t[0]);
-    if(name==65536)throw UNKNOWN_ORDER;
+    if(name==65535)throw UNKNOWN_ORDER;
     for(uint8_t i=1;i<=basic[name].typen;i++){
         if(basic[name].type)args[i-1]=selected_stack(t[i]);
         else args[i-1]=s_to_i32(t[i]);
