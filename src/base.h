@@ -20,7 +20,7 @@ enum LgErrorType{
     FORMAT_ERROR,
     UPLOAD,//上传
 };
-extern uint32_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST,OPER_STACK_LIMIT;
+extern uint32_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST,OPER_STACK_LIMIT,DFT_BASE;
 extern uint32_t do_mod_p;
 vector<string> split(string s,char sign);
 uint16_t selected_stack(string s);
