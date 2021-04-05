@@ -28,6 +28,16 @@ bool excute(){
             if(temp.name<12)++c;
             else c+=BIG_TIME_COST;
             if(c>TIME_LIMIT)throw TIME_LIMIT_EXCEEDED;
+#ifdef LG_DEBUG
+            cout<<"Order["<<temp.name<<"]Time["<<c<<"]";
+            for(uint8_t i=0;i<3;i++){
+                cout<<char('A'+i)<<"[";
+                if(Three[i].empty())cout<<"#";
+                else cout<<Three[i].top();
+                cout<<"]";
+            }
+            cout<<"\n";
+#endif
             switch(temp.name){
                 case 0:{
                     Three[temp.args[0]].push(temp.args[1]);
@@ -110,7 +120,7 @@ bool excute(){
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         ans+=a;
                         if(ans>=do_mod_p)ans-=do_mod_p;
@@ -129,7 +139,7 @@ bool excute(){
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -148,7 +158,7 @@ bool excute(){
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         if(a<ans)throw UNDEFINED_BEHAVIOR;
                         b.push(a-ans);
@@ -166,7 +176,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -182,7 +192,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     vector<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push_back(a);
                     }
@@ -198,7 +208,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     vector<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push_back(a);
                     }
@@ -212,7 +222,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),q=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     vector<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push_back(a);
                     }
@@ -231,7 +241,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     queue<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[1]].poptop();
                         b.push(a);
                     }
@@ -247,7 +257,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     queue<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[1]].poptop();
                         b.push(a);
                     }
@@ -281,7 +291,7 @@ bool excute(){
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     queue<uint32_t>b;
                     uint32_t ans=0;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[1]].poptop();
                         b.push(a);
                         ans+=a;
@@ -301,7 +311,7 @@ bool excute(){
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     queue<uint32_t>b;
                     uint32_t ans=1;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[1]].poptop();
                         b.push(a);
                         ans*=a;
@@ -325,7 +335,7 @@ bool excute(){
                     }
                     uint32_t t=fastpow(DFT_BASE,(do_mod_p-1)/k,do_mod_p);
                     vector<uint32_t>c;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         c.push_back(a);
                     }
@@ -345,7 +355,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),x=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -361,7 +371,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),x=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -379,7 +389,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),x=Three[temp.args[1]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -395,7 +405,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),x=Three[temp.args[1]].poptop();
                     if(x==0||k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -411,7 +421,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop(),x=Three[temp.args[1]].poptop();
                     if(x==0||k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
                     }
@@ -427,7 +437,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>c;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t t=Three[temp.args[1]].poptop()+Three[temp.args[2]].poptop();
                         if(t>=do_mod_p)t-=do_mod_p;
                         c.push(t);
@@ -444,7 +454,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>c;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t t=Three[temp.args[1]].poptop()+do_mod_p;
                         t-=Three[temp.args[2]].poptop();
                         if(t>=do_mod_p)t-=do_mod_p;
@@ -462,7 +472,7 @@ bool excute(){
                     uint32_t k=Three[temp.args[0]].poptop();
                     if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>c;
-                    for(uint32_t i=0;i<k;++k){
+                    for(uint32_t i=0;i<k;++i){
                         uint32_t t=Three[temp.args[1]].poptop()*Three[temp.args[2]].poptop()%do_mod_p;
                         c.push(t);
                     }

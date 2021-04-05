@@ -67,9 +67,10 @@ uint32_t luogu_stack::ttop(){
 }
 uint32_t luogu_stack::poptop(){
     if(size==0)throw UNDEFINED_BEHAVIOR;
+    uint32_t t=data.top();
     data.pop();
     size--;
-    return data.top();
+    return t;
 }
 void luogu_stack::push(uint32_t x){
     if(size==MAX_STACK)throw STACK_OVERFLOW;
