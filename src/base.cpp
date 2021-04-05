@@ -54,6 +54,12 @@ uint32_t luogu_stack::top(){
     if(size==0)throw ILLEGAL_ACCESS;
     return data.top();
 }
+uint32_t luogu_stack::poptop(){
+    if(size==0)throw UNDEFINED_BEHAVIOR;
+    data.pop();
+    size--;
+    return data.top();
+}
 void luogu_stack::push(uint32_t x){
     if(size==MAX_STACK)throw STACK_OVERFLOW;
     data.push(x);
@@ -83,6 +89,29 @@ false=数字
 {"EMP",3,{1,0,0}},
 {"CMP",4,{1,1,0,0}},
 {"TER",0},
+//EXPAND:
+{"T00",2,{1,0}},
+{"T01",2,{1,0}},
+{"T02",2,{1,0}},
+{"T03",2,{1,0}},
+{"T04",2,{1,0}},
+{"T05",2,{1,0}},
+{"T06",3,{1,1,0}},
+{"T07",3,{1,1,0}},
+{"T08",3,{1,1,0}},
+{"T09",3,{1,1,0}},
+{"T10",3,{1,1,0}},
+{"T11",3,{1,1,0}},
+{"T12",3,{1,1,0}},
+{"T13",3,{1,1,0}},
+{"T14",3,{1,1,0}},
+{"T15",3,{1,1,0}},
+{"T16",3,{1,1,0}},
+{"T17",3,{1,1,0}},
+{"T18",3,{1,1,0}},
+{"T19",4,{1,1,1,0}},
+{"T20",4,{1,1,1,0}},
+{"T21",4,{1,1,1,0}},
 //{"",,{,,,}},
 };
 uint16_t order::search_basic(string ordername){

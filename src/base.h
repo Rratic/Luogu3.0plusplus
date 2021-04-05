@@ -33,6 +33,7 @@ class luogu_stack{
     luogu_stack();
     void pop();
     uint32_t top();
+    uint32_t poptop();
     void push(uint32_t x);
     bool empty();
     uint32_t length();

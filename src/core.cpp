@@ -105,6 +105,18 @@ bool excute(){
                     doexit=true;
                     break;
                 }
+                case 12:{//T00
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    stack<uint32_t>b;
+                    uint32_t ans=0;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        ans+=a;
+                        b.push(a);
+                    }
+                    default_state=temp.args[1];
+                    break;
+                }
             }
             if(doexit)break;
         }
