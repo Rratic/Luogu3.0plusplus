@@ -37,6 +37,7 @@ luogu_stack::luogu_stack(){size=0;}
 void luogu_stack::pop(){
     if(size==0)throw STACK_UNDERFLOW;
     data.pop();
+    size--;
 }
 uint32_t luogu_stack::top(){
     if(size==0)throw ILLEGAL_ACCESS;
@@ -45,9 +46,13 @@ uint32_t luogu_stack::top(){
 void luogu_stack::push(uint32_t x){
     if(size==MAX_STACK)throw STACK_OVERFLOW;
     data.push(x);
+    size++;
 }
 bool luogu_stack::empty(){
     return size==0;
+}
+uint32_t luogu_stack::length(){
+    return size;
 }
 uint16_t order::order_pattern_num=34;
 order_pattern order::basic[]={

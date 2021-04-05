@@ -34,6 +34,7 @@ class luogu_stack{
     uint32_t top();
     void push(uint32_t x);
     bool empty();
+    uint32_t length();
 };
 class order_pattern{
     public:
