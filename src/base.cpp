@@ -1,5 +1,5 @@
 #include "base.h"
-uint16_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000;
+uint32_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000;
 uint32_t do_mod_p=(1<<23)+1;
 vector<string> split(string s,char sign){
     vector<string>ans;
@@ -83,4 +83,5 @@ bool order::load(string s){
         if(basic[name].type)args[i-1]=selected_stack(t[i]);
         else args[i-1]=s_to_i32(t[i]);
     }
+    return true;
 }

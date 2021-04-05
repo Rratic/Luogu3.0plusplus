@@ -22,7 +22,6 @@ bool initall(queue<string>s){
 }
 bool excute(){
     uint32_t c=0;
-    uint32_t now_state=default_state;
     bool doexit=false;
     try{
         while(true){
@@ -119,4 +118,5 @@ bool excute(){
         if(i==UNDEFINED_BEHAVIOR)public_message="UNDEFINED_BEHAVIOR";
         throw UPLOAD;
     }
+    return true;
 }

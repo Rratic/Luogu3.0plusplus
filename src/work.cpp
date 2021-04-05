@@ -20,7 +20,7 @@ bool initstackfromfile(string filename){
     string t;
     while(getline(fin,t)){
         s=split(t,' ');
-        if(s.size()==0)return FORMAT_ERROR;
+        if(s.size()==0)throw FORMAT_ERROR;
         uint32_t tt=selected_stack(s[0]);
         s.erase(s.begin());
         for(auto i:s){
@@ -38,7 +38,7 @@ bool lgwork(string filename){
         if(i==UPLOAD)cout<<public_message;
         return false;
     }
-    savefile:{
+    {//savefile
         ofstream fout;
         fout.open(filename,std::ios::out);
         if(!fout.is_open())throw FILE_ERROR;

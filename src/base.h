@@ -19,7 +19,7 @@ enum LgErrorType{
     FORMAT_ERROR,
     UPLOAD,//上传
 };
-extern uint16_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST;
+extern uint32_t MAX_STATE,MAX_STACK,TIME_LIMIT,BIG_TIME_COST;
 extern uint32_t do_mod_p;
 vector<string> split(string s,char sign);
 uint16_t selected_stack(string s);
@@ -27,7 +27,7 @@ uint32_t s_to_i32(string s);
 class luogu_stack{
     private:
     stack<uint32_t>data;
-    uint16_t size;
+    uint32_t size;
     public:
     luogu_stack();
     void pop();
