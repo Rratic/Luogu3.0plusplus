@@ -317,6 +317,28 @@ bool excute(){
                     break;
                 }
                 case 25:{//T13
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k==0||k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    while(k!=1){
+                        if(k&1)throw UNDEFINED_BEHAVIOR;
+                        k>>=1;
+                    }
+                    uint32_t t=fastpow(DFT_BASE,(do_mod_p-1)/k,do_mod_p);
+                    vector<uint32_t>c;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        c.push_back(a);
+                    }
+                    for(uint32_t i=0;i<k;++i){
+                        uint32_t ans=0;
+                        Three[temp.args[0]].push(ans);
+                        for(uint32_t j=0;j<k;++j){
+                            ans+=(c[j]*fastpow(t,i*j,do_mod_p));
+                        }
+                    }
+                    //待优化
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[1];
                     break;
                 }
                 case 26:{//T14

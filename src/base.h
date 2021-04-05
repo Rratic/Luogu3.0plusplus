@@ -25,6 +25,7 @@ extern uint32_t do_mod_p;
 vector<string> split(string s,char sign);
 uint16_t selected_stack(string s);
 uint32_t s_to_i32(string s);
+uint32_t fastpow(uint32_t a,uint32_t b,uint32_t p);//a^b%p,a<p
 class luogu_stack{
     private:
     stack<uint32_t>data;

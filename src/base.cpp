@@ -44,6 +44,13 @@ uint32_t s_to_i32(string s){
     }
     return ans;
 }
+uint32_t fastpow(uint32_t a,uint32_t b,uint32_t p){
+    if(b==0)return 1;
+    if(b==1)return a;
+    uint32_t t=fastpow(a,b/2,p);
+    if(b&1)return (t*t%p)*a%p;
+    return t*t%p;
+}
 luogu_stack::luogu_stack(){size=0;}
 void luogu_stack::pop(){
     if(size==0)throw STACK_UNDERFLOW;
