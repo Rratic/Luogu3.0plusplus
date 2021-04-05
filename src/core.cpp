@@ -107,7 +107,7 @@ bool excute(){
                 }
                 case 12:{//T00
                     uint32_t k=Three[temp.args[0]].poptop();
-                    if(k>OPER_STACK_LIMIT||Three[temp.args[0]].length()<k)throw UNDEFINED_BEHAVIOR;
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
                     for(uint32_t i=0;i<k;++k){
@@ -119,12 +119,13 @@ bool excute(){
                         Three[temp.args[0]].push(b.top());
                         b.pop();
                     }
+                    Three[temp.args[0]].push(k);
                     default_state=temp.args[1];
                     break;
                 }
                 case 13:{//T01
                     uint32_t k=Three[temp.args[0]].poptop();
-                    if(k>OPER_STACK_LIMIT||Three[temp.args[0]].length()<k)throw UNDEFINED_BEHAVIOR;
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
                     for(uint32_t i=0;i<k;++k){
@@ -136,7 +137,141 @@ bool excute(){
                         Three[temp.args[0]].push(ans);
                         b.pop();
                     }
+                    Three[temp.args[0]].push(k);
                     default_state=temp.args[1];
+                    break;
+                }
+                case 14:{//T02
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    stack<uint32_t>b;
+                    uint32_t ans=0;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        if(a<ans)throw UNDEFINED_BEHAVIOR;
+                        b.push(a-ans);
+                        ans=a;
+                    }
+                    while(!b.empty()){
+                        Three[temp.args[0]].push(b.top());
+                        b.pop();
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[1];
+                    break;
+                }
+                case 15:{//T03
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    stack<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        b.push(a);
+                    }
+                    while(!b.empty()){
+                        Three[temp.args[0]].push(b.top());
+                        b.pop();
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[1];
+                    break;
+                }
+                case 16:{//T04
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    vector<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        b.push_back(a);
+                    }
+                    sort(b.begin(),b.end());
+                    for(auto i=b.rbegin();i!=b.rend();i++){
+                        Three[temp.args[0]].push(*i);
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[1];
+                    break;
+                }
+                case 17:{//T05
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    vector<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        b.push_back(a);
+                    }
+                    sort(b.begin(),b.end());
+                    for(auto i:b)Three[temp.args[0]].push(i);
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[1];
+                    break;
+                }
+                case 18:{//T06
+                    uint32_t k=Three[temp.args[0]].poptop(),q=Three[temp.args[1]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    vector<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
+                        b.push_back(a);
+                    }
+                    for(uint32_t i=1;i<=q;i++){
+                        Three[temp.args[0]].push(b[q-i+1]);
+                    }
+                    q=k-q;
+                    for(uint32_t i=1;i<=q;i++){
+                        Three[temp.args[0]].push(b[k-i+1]);
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[2];
+                    break;
+                }
+                case 19:{//T07
+                    uint32_t k=Three[temp.args[1]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    queue<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[1]].poptop();
+                        b.push(a);
+                    }
+                    while(!b.empty()){
+                        Three[temp.args[0]].push(b.front());
+                        b.pop();
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[2];
+                    break;
+                }
+                case 20:{//T08
+                    uint32_t k=Three[temp.args[1]].poptop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    queue<uint32_t>b;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[1]].poptop();
+                        b.push(a);
+                    }
+                    while(!b.empty()){
+                        Three[temp.args[0]].push(b.front());
+                        Three[temp.args[1]].push(b.front());
+                        b.pop();
+                    }
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[2];
+                    break;
+                }
+                case 21:{//T09
+                    uint32_t k=Three[temp.args[0]].poptop(),v=Three[temp.args[1]].ttop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    for(uint32_t i=0;i<k;++i)Three[temp.args[0]].push(v);
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[2];
+                    break;
+                }
+                case 22:{//T10
+                    uint32_t k=Three[temp.args[0]].poptop(),v=Three[temp.args[1]].ttop();
+                    if(k>OPER_STACK_LIMIT)throw UNDEFINED_BEHAVIOR;
+                    for(uint32_t i=1;i<=k;++i)Three[temp.args[0]].push(v+k-i);
+                    Three[temp.args[0]].push(k);
+                    default_state=temp.args[2];
                     break;
                 }
             }

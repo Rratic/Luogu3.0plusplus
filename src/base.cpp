@@ -54,6 +54,10 @@ uint32_t luogu_stack::top(){
     if(size==0)throw ILLEGAL_ACCESS;
     return data.top();
 }
+uint32_t luogu_stack::ttop(){
+    if(size==0)throw UNDEFINED_BEHAVIOR;
+    return data.top();
+}
 uint32_t luogu_stack::poptop(){
     if(size==0)throw UNDEFINED_BEHAVIOR;
     data.pop();
