@@ -107,12 +107,34 @@ bool excute(){
                 }
                 case 12:{//T00
                     uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT||Three[temp.args[0]].length()<k)throw UNDEFINED_BEHAVIOR;
                     stack<uint32_t>b;
                     uint32_t ans=0;
                     for(uint32_t i=0;i<k;++k){
                         uint32_t a=Three[temp.args[0]].poptop();
                         ans+=a;
+                        b.push(ans);
+                    }
+                    while(!b.empty()){
+                        Three[temp.args[0]].push(b.top());
+                        b.pop();
+                    }
+                    default_state=temp.args[1];
+                    break;
+                }
+                case 13:{//T01
+                    uint32_t k=Three[temp.args[0]].poptop();
+                    if(k>OPER_STACK_LIMIT||Three[temp.args[0]].length()<k)throw UNDEFINED_BEHAVIOR;
+                    stack<uint32_t>b;
+                    uint32_t ans=0;
+                    for(uint32_t i=0;i<k;++k){
+                        uint32_t a=Three[temp.args[0]].poptop();
                         b.push(a);
+                    }
+                    while(!b.empty()){
+                        ans+=b.top();
+                        Three[temp.args[0]].push(ans);
+                        b.pop();
                     }
                     default_state=temp.args[1];
                     break;

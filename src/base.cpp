@@ -1,5 +1,5 @@
 #include "base.h"
-uint32_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000;
+uint32_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000,OPER_STACK_LIMIT=10000;
 uint32_t do_mod_p=(1<<23)+1;
 string public_message;
 vector<string> split(string s,char sign){
@@ -103,7 +103,7 @@ false=数字
 {"T10",3,{1,1,0}},
 {"T11",3,{1,1,0}},
 {"T12",3,{1,1,0}},
-{"T13",3,{1,1,0}},
+{"T13",2,{1,0}},
 {"T14",3,{1,1,0}},
 {"T15",3,{1,1,0}},
 {"T16",3,{1,1,0}},
