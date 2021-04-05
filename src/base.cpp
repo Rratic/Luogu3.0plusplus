@@ -1,6 +1,7 @@
 #include "base.h"
 uint32_t MAX_STATE=100000,MAX_STACK=1000000,TIME_LIMIT=1000000,BIG_TIME_COST=10000;
 uint32_t do_mod_p=(1<<23)+1;
+string public_message;
 vector<string> split(string s,char sign){
     vector<string>ans;
     size_t l=s.length();
@@ -21,13 +22,23 @@ uint16_t selected_stack(string s){
     if(s=="A")return 0;
     else if(s=="B")return 1;
     else if(s=="C")return 2;
+#ifdef LG_DEBUG
+    public_message="Expected A,B or C,read \""+s+"\"";
+    throw UPLOAD;
+#endif
     throw FORMAT_ERROR;
     return 0;
 }
 uint32_t s_to_i32(string s){
     uint32_t ans=0;
     for(auto i:s){
-        if(i<'0'||i>'9')throw FORMAT_ERROR;
+        if(i<'0'||i>'9'){
+#ifdef LG_DEBUG
+            public_message="Expected 0~9,read \""+s+"\"";
+            throw UPLOAD;
+#endif
+            throw FORMAT_ERROR;
+        }
         ans*=10;
         ans+=(i-'0');
     }
@@ -60,9 +71,9 @@ order_pattern order::basic[]={
 true=字母
 false=数字
 */
-{"PUS",3,{0,1,1}},
-{"POP",2,{0,1}},
-{"MOV",3,{0,0,1}},
+{"PUS",3,{1,0,0}},
+{"POP",2,{1,0}},
+{"MOV",3,{1,1,0}},
 {"CPY",3,{1,1,0}},
 {"ADD",4,{1,1,1,0}},
 {"SUB",4,{1,1,1,0}},
@@ -85,7 +96,7 @@ bool order::load(string s){
     name=search_basic(t[0]);
     if(name==65535)throw UNKNOWN_ORDER;
     for(uint8_t i=1;i<=basic[name].typen;i++){
-        if(basic[name].type)args[i-1]=selected_stack(t[i]);
+        if(basic[name].type[i-1])args[i-1]=selected_stack(t[i]);
         else args[i-1]=s_to_i32(t[i]);
     }
     return true;

@@ -2,7 +2,6 @@
 luogu_stack Three[3];
 uint32_t state_num,default_state;
 vector<order>orders;
-string public_message;
 order copy_state(){
     return orders[default_state-1];
     //索引方式不同

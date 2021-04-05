@@ -12,6 +12,7 @@ int main(int argc,char *argv[]){
             if(i==FILE_ERROR)cout<<"Failed to open file:"<<public_message;
             if(i==FORMAT_ERROR)cout<<"Incorrect format.";
             if(i==TOO_MANY_STATES)cout<<"Too many states!";
+            if(i==UPLOAD)cout<<public_message;
             exit(0);
         }
     }

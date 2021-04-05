@@ -5,6 +5,7 @@
 using std::stack;
 using std::vector;
 using std::string;
+extern string public_message;
 enum LgErrorType{
     STACK_OVERFLOW,
     STACK_UNDERFLOW,
