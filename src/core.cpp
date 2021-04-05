@@ -8,7 +8,7 @@ order copy_state(){
 }
 bool initall(queue<string>s){
     vector<string>t=split(s.front(),' ');
-    state_num=s_to_i32(t[0]),default_state=s_to_i32(t[1]);
+    state_num=s_to_i32(t.at(0)),default_state=s_to_i32(t.at(1));
     if(state_num>MAX_STATE)throw TOO_MANY_STATES;
     s.pop();
     while(!s.empty()){

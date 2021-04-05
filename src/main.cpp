@@ -8,6 +8,9 @@ int main(int argc,char *argv[]){
             initstackfromfile(s1+".in");
             lgwork(s1+".out");
         }
+        catch(out_of_range){
+            cout<<"Fatal format error!";
+        }
         catch(LgErrorType i){
             if(i==FILE_ERROR)cout<<"Failed to open file:"<<public_message;
             if(i==FORMAT_ERROR)cout<<"Incorrect format.";

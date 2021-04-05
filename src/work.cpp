@@ -27,7 +27,7 @@ bool initstackfromfile(string filename){
         cout<<"Init file read: "<<t<<'\n';
 #endif
         if(s.size()==0)throw FORMAT_ERROR;
-        uint32_t tt=selected_stack(s[0]);
+        uint32_t tt=selected_stack(s.at(0));
         s.erase(s.begin());
         for(auto i:s){
             Three[tt].push(s_to_i32(i));

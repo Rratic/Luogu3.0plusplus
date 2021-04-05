@@ -1,10 +1,12 @@
 #include <stack>
+#include <stdexcept>
 #include <vector>
 #include <string>
 #include <stdint.h>
 using std::stack;
 using std::vector;
 using std::string;
+using std::out_of_range;
 extern string public_message;
 enum LgErrorType{
     STACK_OVERFLOW,
