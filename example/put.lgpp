@@ -1,0 +1,9 @@
+8 1
+POP A 2
+EMP A 4 3
+MOV B A 2
+EMP B 6 5
+MOV C B 4
+EMP C 8 7
+MOV A C 6
+TER
