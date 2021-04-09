@@ -12,18 +12,35 @@ string ErrorMessage[]={
 "FILE_ERROR",
 "FORMAT_ERROR",
 };
+lguint \
+_mod=119*(1<<23)+1/*998244353*/,\
+_stack=1000000,\
+_state=100000,\
+_std=2,\
+_t13_base=114514/*再次声明：此值由GitPinkRabbit制定*/,\
+_time_limit=1000000,\
+_txx_cost=10000,\
+_txx_oper=10000;
+string deal(string s){
+    string t;
+    for(auto i:s){
+        if(i==' ')continue;
+        if(i>='A'&&i<='Z')i=i-'A'+'a';
+        t.push_back(i);
+    }
+    return t;
+}
 vector<string> split(string s,char sign){
     vector<string>ans;
-    size_t l=s.length();
     string temp;
-    for(size_t i=0;i<l;++i){
-        if(s[i]==sign){
+    for(auto i:s){
+        if(i==sign){
             if(temp!=""){
                 ans.push_back(temp);
                 temp="";
             }
         }
-        else temp+=s[i];
+        else temp.push_back(i);
     }
     if(temp!="")ans.push_back(temp);
     return ans;

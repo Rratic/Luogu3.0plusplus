@@ -29,6 +29,7 @@ _t13_base,\
 _time_limit,\
 _txx_cost,\
 _txx_oper;
+string deal(string s);
 vector<string> split(string s,char sign);
 lguint SelectedStack(string s);
 lguint s_to_i64(string s);
