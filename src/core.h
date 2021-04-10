@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <queue>
+#include <algorithm>
 using std::ifstream;
 using std::ofstream;
 using std::cin;
@@ -11,6 +12,7 @@ using std::endl;
 using std::getchar;
 using std::getline;
 using std::queue;
+using std::sort;
 extern LgStack Three[3];
 extern lguint state_num,default_state;
 extern vector<order>orders;
