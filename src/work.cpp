@@ -36,3 +36,38 @@ void instack(string name,bool rev){
         else for(auto i=t.begin();i!=t.end();i++)Three[tt].push(s_to_i64(*i));
     }
 }
+void excute(){
+    lguint timer=0;
+    while(true){
+        if(excute_line(timer))break;
+    }
+}
+void outstack(string name,bool rev){
+    ofstream fout;
+    fout.open(name,std::ios::out);
+    if(!fout.is_open()){
+        cerr<<name<<" : ";
+        throw FILE_ERROR;
+    }
+    for(int i=0;i<3;++i){
+        fout<<char('A'+i);
+        if(rev){
+            stack<lguint>t;
+            while(!Three[i].empty()){
+                t.push(Three[i].qtop());
+                Three[i].qpop();
+            }
+            while(!t.empty()){
+                fout<<" "<<t.top();
+                t.pop();
+            }
+        }
+        else{
+            while(!Three[i].empty()){
+                fout<<" "<<Three[i].top();
+                Three[i].pop();
+            }
+        }
+        fout<<'\n';
+    }
+}

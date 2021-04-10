@@ -14,4 +14,4 @@ using std::queue;
 extern LgStack Three[3];
 extern lguint state_num,default_state;
 extern vector<order>orders;
-bool excute_line(lguint state_pl);
+bool excute_line(lguint &timer);//位置用default_state存

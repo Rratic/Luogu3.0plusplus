@@ -11,6 +11,7 @@ string ErrorMessage[]={
 "UNKNOWN_ORDER",
 "FILE_ERROR",
 "FORMAT_ERROR",
+"STD_UNSUPPORTTED",
 };
 lguint \
 _mod=119*(1<<23)+1/*998244353*/,\

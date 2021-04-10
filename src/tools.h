@@ -17,6 +17,7 @@ enum LgErrorType{
     UNKNOWN_ORDER,
     FILE_ERROR,
     FORMAT_ERROR,
+    STD_UNSUPPORTTED,
 };
 typedef unsigned long long lguint;
 extern string ErrorMessage[];
