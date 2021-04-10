@@ -80,13 +80,13 @@ case 14:{//差分
 }
 case 15:{//反转
     Dk0;k_txx;
-    stack<lguint>b;
+    queue<lguint>b;
     for(lguint i=0;i<k;++i){
         lguint a=T0.poptop();
         b.push(a);
     }
     while(!b.empty()){
-        T0.push(b.top());b.pop();
+        T0.push(b.front());b.pop();
     }
     Pk0;D1;break;
 }
@@ -105,6 +105,198 @@ case 17:{//反向排序
     sort(b.begin(),b.end());
     for(auto i:b)T0.push(i);
     Pk0;D1;break;
+}
+case 18:{//旋转
+    lguint k=T0.poptop(),q=T1.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    vector<lguint>b;
+    for(lguint i=0;i<k;++i)b.push_back(T0.poptop());
+    for(lguint i=1;i<=q;i++)T0.push(b[q-i]);
+    q=k-q;
+    for(lguint i=1;i<=q;i++)T0.push(b[k-i]);
+    Pk0;D2;break;
+}
+case 19:{//批量移动
+    lguint k=T1.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T1.poptop());
+    while(!b.empty()){
+        T0.push(b.top());b.pop();
+    }
+    Pk0;D2;break;
+}
+case 20:{//批量复制
+    lguint k=T1.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T1.poptop());
+    while(!b.empty()){
+        T0.push(b.top());T1.push(b.top());b.pop();
+    }
+    Pk0;D2;break;
+}
+case 21:{//填充
+    lguint k=T0.poptop(),v=T1.ttop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    for(lguint i=0;i<k;++i)T0.push(v);
+    Pk0;D2;break;
+}
+case 22:{//ι 这符号smg
+    lguint k=T0.poptop(),v=T1.ttop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    for(lguint i=1;i<=k;++i)T0.push(v+k-i);
+    Pk0;D2;break;
+}
+case 23:{//求和
+    lguint k=T1.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    lguint ans=0;
+    for(lguint i=0;i<k;++i){
+        lguint a=T1.poptop();b.push(a);
+        ans=addp(ans,a,_mod);
+    }
+    while(!b.empty()){
+        T1.push(b.top());b.pop();
+    }
+    T0.push(ans);T1.push(k);D2;break;
+}
+case 24:{//求积
+    lguint k=T1.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    lguint ans=0;
+    for(lguint i=0;i<k;++i){
+        lguint a=T1.poptop();b.push(a);
+        ans=ans*a%_mod;
+    }
+    while(!b.empty()){
+        T1.push(b.top());b.pop();
+    }
+    T0.push(ans);T1.push(k);D2;break;
+}
+case 25:{//DFT
+    lguint k=T0.poptop();
+    if(k==0||k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    while(k!=1){
+        if(k&1)throw UNDEFINED_BEHAVIOR;
+        k>>=1;
+    }
+    lguint t=FastPow(_t13_base,(_mod-1)/k,_mod);//预处理
+    vector<lguint>a;
+    for(lguint i=0;i<k;++i)a.push_back(T0.poptop());
+    for(lguint i=k;i>=1;--i){//k-1;0;--会挂
+        lguint ans=0;
+        for(lguint j=0;j<k;++j){
+            ans+=(a[j]*FastPow(t,(i-1)*j%_mod,_mod)%_mod);
+        }
+        T0.push(ans);
+    }
+    //似乎可以优化？
+    Pk0;D1;break;
+}
+case 26:{//批量加法
+    lguint k=T0.poptop(),x=T1.ttop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T0.poptop());
+    while(!b.empty()){
+        T0.push(addp(b.top(),x,_mod));b.pop();
+    }
+    Pk0;D2;break;
+}
+case 27:{//批量减法
+    lguint k=T0.poptop(),x=T1.ttop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T0.poptop());
+    while(!b.empty()){
+        T0.push(subp(b.top(),x,_mod));b.pop();
+    }
+    Pk0;D2;break;
+}
+case 28:{//批量乘法
+    lguint k=T0.poptop(),x=T1.ttop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T0.poptop());
+    while(!b.empty()){
+        T0.push(b.top()*x%_mod);b.pop();
+    }
+    Pk0;D2;break;
+}
+case 29:{//批量整数除法
+    lguint k=T0.poptop(),x=T1.ttop();
+    if(x==0||k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T0.poptop());
+    while(!b.empty()){
+        T0.push(b.top()/x);b.pop();
+    }
+    Pk0;D2;break;
+}
+case 30:{//批量整数取模
+    lguint k=T0.poptop(),x=T1.ttop();
+    if(x==0||k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>b;
+    for(lguint i=0;i<k;++i)b.push(T0.poptop());
+    while(!b.empty()){
+        T0.push(b.top()%x);b.pop();
+    }
+    Pk0;D2;break;
+}
+case 31:{//向量加法
+    lguint k=T0.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>c,a,b;
+    for(lguint i=0;i<k;++i){
+        a.push(T1.poptop());
+        b.push(T2.poptop());
+        lguint t=addp(a.top(),b.top(),_mod);
+        c.push(t);
+    }
+    for(lguint i=0;i<k;i++){
+        T1.push(a.top());a.pop();
+        T2.push(b.top());b.pop();
+        T0.push(c.top());c.pop();
+    }
+    Pk0;D3;break;
+}
+case 32:{//向量减法
+    lguint k=T0.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>c,a,b;
+    for(lguint i=0;i<k;++i){
+        a.push(T1.poptop());
+        b.push(T2.poptop());
+        lguint t=subp(a.top(),b.top(),_mod);
+        c.push(t);
+    }
+    for(lguint i=0;i<k;i++){
+        T1.push(a.top());a.pop();
+        T2.push(b.top());b.pop();
+        T0.push(c.top());c.pop();
+    }
+    Pk0;D3;break;
+    Pk0;D3;break;
+}
+case 33:{//向量乘法
+    lguint k=T0.poptop();
+    if(k>_txx_oper)throw UNDEFINED_BEHAVIOR;
+    stack<lguint>c,a,b;
+    for(lguint i=0;i<k;++i){
+        a.push(T1.poptop());
+        b.push(T2.poptop());
+        lguint t=a.top()*b.top()%_mod;
+        c.push(t);
+    }
+    for(lguint i=0;i<k;i++){
+        T1.push(a.top());a.pop();
+        T2.push(b.top());b.pop();
+        T0.push(c.top());c.pop();
+    }
+    Pk0;D3;break;
 }
 
 //std==2
