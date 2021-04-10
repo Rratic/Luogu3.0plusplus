@@ -69,3 +69,22 @@ lguint FastPow(lguint a,lguint b,lguint p){
     if(b&1)return (t*t%p)*a%p;
     return t*t%p;
 }
+lguint isqrt(lguint a){
+    lguint l=0,mid,r=4294967295;//2^32-1
+    while(l<=r){
+        mid=(l+r)/2;
+        if(mid*mid>a)r=mid-1;
+        else if((mid+1)*(mid+1)>a)break;
+        else l=mid+1;
+    }
+    return mid;
+}
+lguint addp(lguint a,lguint b,lguint p){
+    a+=b;
+    if(a>=p)a-=p;
+    return a;
+}
+lguint subp(lguint a,lguint b,lguint p){
+    if(a<b)a+=p;
+    return a-b;
+}

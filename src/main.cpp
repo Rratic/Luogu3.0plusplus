@@ -34,6 +34,10 @@ int main(int argc,char *argv[]){
             }
             else filepl=s;
         }
+        if(filepl==""){
+            cerr<<"NO INPUT FILE : ";
+            throw FORMAT_ERROR;
+        }
         incode(filepl+".lgpp");
         if(trace_in)instack(filepl+".in",revin);
         excute();

@@ -35,3 +35,6 @@ vector<string> split(string s,char sign);
 lguint SelectedStack(string s);
 lguint s_to_i64(string s);
 lguint FastPow(lguint a,lguint b,lguint p);//a^b%p,a<p
+lguint isqrt(lguint a);
+lguint addp(lguint a,lguint b,lguint p);
+lguint subp(lguint a,lguint b,lguint p);
