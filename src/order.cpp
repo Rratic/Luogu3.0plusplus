@@ -45,8 +45,9 @@ unsigned short order::search_basic(string ordername){
 }
 bool order::load(string s){
     vector<string>t=split(s,' ');
-    name=search_basic(deal(t[0]));
+    name=search_basic(deal(t.at(0)));
     if(name==65535)throw UNKNOWN_ORDER;
+    if(t.size()<=basic[name].typen)throw FORMAT_ERROR;
     for(uint8_t i=1;i<=basic[name].typen;i++){
         if(basic[name].type[i-1])args[i-1]=SelectedStack(t[i]);
         else args[i-1]=s_to_i64(t[i]);
