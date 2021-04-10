@@ -16,6 +16,20 @@ int main(int argc,char *argv[]){
                         cerr<<"Out of range "<<j<<": ";
                         throw FORMAT_ERROR;
                     }
+                    if(t[0]=="--mod")_mod=j;
+                    else if(t[0]=="--stack")_stack=j;
+                    else if(t[0]=="--state")_state=j;
+                    else if(t[0]=="--std")_std=j;
+                    else if(t[0]=="--t13-base")_t13_base=j;
+                    else if(t[0]=="--time-limit")_time_limit=j;
+                    else if(t[0]=="--txx-cost")_txx_cost=j;
+                    else if(t[0]=="--txx-oper")_txx_oper=j;
+                }
+                else{
+                    if(s=="(-disable-in")trace_in=false;
+                    else if(s=="-disable-out")trace_out=false;
+                    else if(s=="-revin")revin=true;
+                    else if(s=="-revout")revout=true;
                 }
             }
             else filepl=s;
